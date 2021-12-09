@@ -12,6 +12,10 @@ startButton.onclick = function () {
 	wheel.style.transition = 'all 10s ease-out';
 	wheel.style.transform = `rotate(${deg}deg)`;
 	wheel.classList.add('blur');
+	vkBridge.send("VKWebAppCheckNativeAds", {"ad_format": "interstitial"});
+        vkBridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
+         .then(data => console.log(data.result))
+         .catch(error => console.log(error));
             }
 
 wheel.addEventListener('transitionend', () => {
