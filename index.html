@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Решалка</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body id="body-header">
+	
+	
+		<div id="game">
+			<img class="pin" src="Assets/pin.png">
+			<img class="wheel" src="Assets/wheel.png">
+			<img class="stand" src="Assets/stand.png">
+			<img class="button" id="disable" src="Assets/button.png">
+		</div>	
+	
+	<div class="buttons">
+		<button name="submit" class="action_btn luck" type="submit" value="GetLuck" onclick="Luck()">+40 удачи</button>
+		<p id="saved"></p>
+</div>
+	
+	
+	<script src="browser.min.js"></script> 
+	<script src="script.js"></script>  
+	
+	<script>
+		vkBridge.send("VKWebAppInit");
+		
+		document.getElementById("saved").onclick = function() {Luck()}; 
+		function Luck() {
+                vkBridge.send("VKWebAppCheckNativeAds", {"ad_format": "interstitial"});
+                vkBridge.send("VKWebAppShowNativeAds", {ad_format:"interstitial"})
+                 .then(data => console.log(data.result))
+                 .catch(error => console.log(error));
+}
+	</script>	
+	
+</body>
+</html>
